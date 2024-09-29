@@ -7,8 +7,8 @@ function getWeather() {
         return;
     }
 
-    const currentWeatherUrl = https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey};
-    const forecastUrl = https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey};
+    const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+    const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
 
     fetch(currentWeatherUrl)
         .then(response => response.json())
@@ -48,13 +48,13 @@ function displayWeather(data) {
     windDiv.style.display = 'none'; 
 
     if (data.code === '404') {
-        weatherInfoDiv.innerHTML = <p>${data.message}</p>;
+        weatherInfoDiv.innerHTML = `<p>${data.message}</p>`;
     } else {
         const cityName = data.name;
         const temperature = Math.round(data.main.temp - 273.15); 
         const description = data.weather[0].description;
         const iconCode = data.weather[0].icon;
-        const iconUrl = https://openweathermap.org/img/wn/${iconCode}@4x.png;
+        const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@4x.png`;
 
         const temperatureHTML = `
             <p>${temperature}°C</p>
@@ -72,8 +72,8 @@ function displayWeather(data) {
 
         const humidity = data.main.humidity; // Humidity
         const windSpeed = Math.round(data.wind.speed * 3.6); 
-        humiditySpan.innerHTML = Humidity: ${humidity}%;
-        windSpeedSpan.innerHTML = Wind Speed: ${windSpeed} km/h;
+        humiditySpan.innerHTML = `Humidity: ${humidity}%`;
+        windSpeedSpan.innerHTML = `Wind Speed: ${windSpeed} km/h`;
         
         humidityDiv.style.display = 'flex'; 
         windDiv.style.display = 'flex'; 
@@ -94,7 +94,7 @@ function displayHourlyForecast(hourlyData) {
         const hour = dateTime.getHours();
         const temperature = Math.round(item.main.temp - 273.15); 
         const iconCode = item.weather[0].icon;
-        const iconUrl = https://openweathermap.org/img/wn/${iconCode}.png;
+        const iconUrl = `https://openweathermap.org/img/wn/${iconCode}.png`;
 
         const hourlyItemHtml = `
             <div class="hourly-item">
@@ -133,5 +133,5 @@ function setWeatherBackground(description) {
     }
 
     body.style.backgroundImage = backgroundImage;
-    body.style.transition = 'background-image 0.5s ease-in-out'; 
+    body.style.transition = 'background-image 0.5s ease-in-out'; 
 }
